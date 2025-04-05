@@ -65,8 +65,8 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
         setProducts(data);
         setFilteredProducts(data);
         
-        // Extract unique categories
-        const uniqueCategories = [...new Set(data.map((product: Product) => product.category))];
+        // Extract unique categories and explicitly cast to string[] to fix the type error
+        const uniqueCategories = [...new Set(data.map((product: Product) => product.category))] as string[];
         setCategories(uniqueCategories);
       } catch (error) {
         console.error('Error fetching products:', error);
